@@ -43,16 +43,26 @@
 <script>
   export default {
     name: 'app',
-    data(){
-      return{
+    data() {
+      return {
         active: 'mr'
       }
     },
-    methods:{
-      sort: function(str){
+    methods: {
+      sort: function(str) {
         this.active = str
         console.log(str)
       }
+    },
+    created() {
+      console.log(this)
+      this.$http.get("https://aerolab-challenge.now.sh/products")
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log("Error: ", error)
+                })
     }
   }
 </script>
@@ -119,11 +129,9 @@
     font-size: 22px;
     color: rgb(163, 163, 163);
   }
-
-  .active{
+  
+  .active {
     background-color: #09d4fa;
     color: #ffffff
   }
-
-  
 </style>
